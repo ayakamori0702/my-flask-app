@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>感情日記アドバイスアプリ</title>
+    <style>
+        body { font-family: sans-serif; background: #f7f7fa; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #ccc; padding: 32px; }
+        h1 { color: #4a4a7d; }
+        textarea { width: 100%; height: 120px; font-size: 1em; margin-bottom: 16px; }
+        button { background: #4a4a7d; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; font-size: 1em; cursor: pointer; }
+        .result { margin-top: 32px; background: #f0f0ff; padding: 16px; border-radius: 6px; }
+        .label { font-weight: bold; color: #4a4a7d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>感情日記アドバイスアプリ</h1>
+        <form method="post">
+            <label for="diary_text" class="label">日記を入力してください：</label><br>
+            <textarea name="diary_text" id="diary_text" required>{{ diary_text }}</textarea><br>
+            <button type="submit">分析する</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <div><span class="label">アドバイス:</span> {{ result.advice }}</div>
+            <div><span class="label">四字熟語:</span> {{ result.idiom }}</div>
+        </div>
+        {% endif %}
+        {% if diary_history %}
+        <div class="result" style="margin-top:40px;">
+            <div class="label">過去の日記の履歴</div>
+            <ul style="list-style:none; padding:0;">
+                {% for entry in diary_history %}
+                <li style="margin-bottom:18px; border-bottom:1px solid #ddd; padding-bottom:10px;">
+                    <div style="color:#888; font-size:0.95em;">{{ entry.timestamp }}</div>
+                    <div><span class="label">日記:</span> {{ entry.text }}</div>
+                    <div><span class="label">アドバイス:</span> {{ entry.result.advice }}</div>
+                    <div><span class="label">四字熟語:</span> {{ entry.result.idiom }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
