@@ -1,0 +1,21 @@
+# Pythonキャッシュ
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 仮想環境
+.venv/
+venv/
+env/
+
+# 環境設定ファイル
+.env
+
+# macOS特有のファイル
+.DS_Store
+
+# その他不要な隠しファイル
+.*
+!.gitignore
+
