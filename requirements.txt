@@ -2,3 +2,4 @@ Flask==2.3.2
 openai>=1.0.0
 gunicorn
 requests
+python-dotenv
